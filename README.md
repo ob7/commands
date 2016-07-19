@@ -1,4 +1,4 @@
-<strong'commands'</strong> is a folder added to my path where I store custom scripts.  This repo shares some of these useful scripts.
+<strong>'commands'</strong> is a folder added to my path where I store custom scripts.  This repo shares some of these useful scripts.
 
 <h4>extract-assets:</h4>
 <p>
