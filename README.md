@@ -10,5 +10,5 @@
 <hr>
 <h4>get-fonts-from-ai:</h4>
 <p>
-	Using SED this script will output the font names in use within an illustrator file, and maybe even a PDF but I havn't tried it on one.
+	Using SED this script will output the font names in use within an illustrator file.  Does not appear to work on PDF's.
 </p>
