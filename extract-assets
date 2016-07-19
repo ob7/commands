@@ -1,0 +1,57 @@
+#!/bin/bash
+done=36 #lightBlue
+message=34 #blue
+warning=31 #red
+normal=38 #green
+yellow=32
+dark=29
+echo -e 'Welcome to the Archebian Illustrator Extractioner\n'
+echo -e '\033[34mCreating export folder'
+directory=EXTRACTED
+if [ ! -d "$directory" ]; then
+	mkdir "$directory"
+	echo -e '\033[36mDone\n'
+else
+	echo -e '\033[31mDirectory already exists. Skipping...\n'
+fi
+if [ -f "$directory/font-names" ]; then
+	rm "$directory/font-names"
+fi
+for file in *.ai; do
+	echo -e '\033[33mReading directory for illustrator files'
+	if [ ! -f $file ]; then
+		echo -e '\033[31mNo AI files available'
+	else
+		echo -e '\033[32mNow operating on file ' "$file" '\n'
+		echo -e '\033[34mConverting AI to PDF for ASCII raw text output ... This may take some time.'
+		if [ ! -f "$directory/$file.pdf" ]; then
+			inkscape -f "$file" -A "$directory/$file.pdf"
+			echo -e '\033[36mDone\n'
+		else
+			echo -e '\033[31mPDF already exists, skipping\n'
+		fi
+
+		echo -e '\033[34mExporting raw ASCII text ... This wont take any time at all ...'
+		if [ ! -f "$directory/$file.txt" ]; then
+			pdftotext -enc ASCII7 "$directory/$file.pdf" "$directory/$file.txt"
+			echo -e '\033[36mDone\n'
+		else
+			echo -e '\033[31mText file already exists, skipping\n'
+		fi
+
+		echo -e '\033[34mConverting AI to SVG for quicker Inkscape file opening ... This may take some time.'
+		if [ ! -f "$directory/$file.svg" ]; then
+			inkscape -f "$file" -l "$directory/$file.svg"
+			echo -e '\033[36mDone\n'
+		else
+			echo -e '\033[31mSVG already exists, skipping\n'
+		fi
+
+		echo -e '\033[34mExtracing font names from AI...'
+		get-fonts-from-ai "$file" >> "$directory/font-names"
+		echo -e '\n' >> "$directory/font-names"
+		echo -e '\033[36mDone\n'
+	fi
+
+done
+echo -e '\n\033[37mALL DONE!'
