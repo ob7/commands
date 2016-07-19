@@ -48,6 +48,7 @@ for file in *.ai; do
 		fi
 
 		echo -e '\033[34mExtracing font names from AI...'
+		echo "$file" >> "$directory/font-names"
 		get-fonts-from-ai "$file" >> "$directory/font-names"
 		echo -e '\n' >> "$directory/font-names"
 		echo -e '\033[36mDone\n'
