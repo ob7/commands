@@ -1,5 +1,5 @@
 <strong>'commands'</strong> is a folder added to my path where I store custom scripts.  This repo shares some of these useful scripts.
-
+<hr>
 <h4>extract-assets:</h4>
 <p>
 	This script is helpful for unix coders building websites from ai files. It converts the AI to both SVG and PDF.   The SVG file will open faster than a straight AI (in Inkscape ofcourse), and the PDF is created so we can export raw ANSI text with no ligatures.<br>
