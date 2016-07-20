@@ -44,12 +44,11 @@ for file in *.ai; do
 			inkscape -f "$file" -l "$directory/$file.svg"
 			echo -e '\033[36mDone\n'
 
+			#Scale SVG from 2400 to 1920, this is an internal thing where I work, designers make sites at 1920px wide, but inkscape opens them as 2400 obviously because its loads them 90DPI.  Knocking the dimensions down by 20% gets us back to 1920px wide file when opening in Inkscape
 			echo -e '\033[34mScaling down SVG from 90DPI to 72, this is so the SVG opens up at same size it was created in within illustrator....'
 			svg-dpi-scale "$directory/$file.svg"
 		else
 			echo -e '\033[31mSVG already exists, skipping\n'
-			echo -e '\033[34mScaling down SVG from 90DPI to 72, this is so the SVG opens up at same size it was created in within illustrator....'
-			svg-dpi-scale "$directory/$file.svg"
 		fi
 
 		echo -e '\033[34mExtracing font names from AI...'
