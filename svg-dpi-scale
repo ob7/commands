@@ -1,4 +1,5 @@
 #!/bin/bash
+#The point of this script is to take an SVG converted from AI that has been upsized from 1920 to 2400px due to Inkscapes 90DPI, and resize it down 20% so the SVG matches the original illustrator document size.
 
 #Insert text before first match of g10, which is entire svg
 cat "$1" | awk '/g10/{print "TEST"; exit;}1' > "$1.resized"
