@@ -22,5 +22,5 @@ cat "$1" | sed -ne '/g10/,$ p' >> "$1.resized"
 mv "$1.resized" "$1.resized.svg"
 #Resize Inkscape canvas to new size
 inkscape "$1.resized.svg" --verb=FitCanvasToSelectionOrDrawing --verb=FileSave --verb=FileClose
-#Move new file to original name
-mv "$1.resized.svg" "$1"
+#Move new file to original name ( removed as this script isn't fool proof so we dont want to overwrite original file unless this script is completly solid)
+#mv "$1.resized.svg" "$1"
