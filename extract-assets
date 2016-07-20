@@ -1,10 +1,10 @@
 #!/bin/bash
-done=36 #lightBlue
-message=34 #blue
-warning=31 #red
-normal=38 #green
-yellow=32
-dark=29
+#done=36 #lightBlue
+#message=34 #blue
+#warning=31 #red
+#normal=38 #green
+#yellow=32
+#dark=29
 echo -e 'Welcome to the Archebian Illustrator Extractioner\n'
 echo -e '\033[34mCreating export folder'
 directory=EXTRACTED
@@ -43,8 +43,13 @@ for file in *.ai; do
 		if [ ! -f "$directory/$file.svg" ]; then
 			inkscape -f "$file" -l "$directory/$file.svg"
 			echo -e '\033[36mDone\n'
+
+			echo -e '\033[34mScaling down SVG from 90DPI to 72, this is so the SVG opens up at same size it was created in within illustrator....'
+			svg-dpi-scale "$directory/$file.svg"
 		else
 			echo -e '\033[31mSVG already exists, skipping\n'
+			echo -e '\033[34mScaling down SVG from 90DPI to 72, this is so the SVG opens up at same size it was created in within illustrator....'
+			svg-dpi-scale "$directory/$file.svg"
 		fi
 
 		echo -e '\033[34mExtracing font names from AI...'

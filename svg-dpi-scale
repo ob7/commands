@@ -1,0 +1,25 @@
+#!/bin/bash
+
+#Insert text before first match of g10, which is entire svg
+cat "$1" | awk '/g10/{print "TEST"; exit;}1' > "$1.resized"
+
+#Remove lsat 2 lines of newly created file
+sed -i '$d' "$1.resized"
+sed -i '$d' "$1.resized"
+
+#Get height of original file, convert it to 72 dpi value, and insert transform into svg
+#Get height line from SVG
+height=$(cat "$1" | grep -m 1 "height");
+#Grab only numbers from line
+height=$(echo "$height" | sed 's/[^"]*"\([^"]*\)".*/\1/')
+#Make 20% smaller (if file is 90 DPI, this makes it 72)
+height=$(bc <<< "$height * 0.80")
+#Insert new transform
+echo "transform=\"matrix(1, 0, 0, -1, 1920, $height)\"" >> "$1.resized"
+#Add rest of original file to new file
+cat "$1" | sed -ne '/g10/,$ p' >> "$1.resized"
+mv "$1.resized" "$1.resized.svg"
+#Resize Inkscape canvas to new size
+inkscape "$1.resized.svg" --verb=FitCanvasToSelectionOrDrawing --verb=FileSave --verb=FileClose
+#Move new file to original name
+mv "$1.resized.svg" "$1"
