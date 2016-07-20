@@ -12,3 +12,8 @@
 <p>
 	Using SED this script will output the font names in use within an illustrator file.  Does not appear to work on PDF's.
 </p>
+<hr>
+<h4>svg-dpi-scale:</h4>
+<p>
+	Inkscape will open at 1920px wide illustrator file at 2400px wide, because it loads it as 90DPI.  This script attempts to porportionally resize the entire SVG back down to 1920px wide from 2400.
+</p>
