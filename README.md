@@ -15,5 +15,5 @@
 <hr>
 <h4>svg-dpi-scale:</h4>
 <p>
-	Inkscape will open at 1920px wide illustrator file at 2400px wide, because it loads it as 90DPI.  This script attempts to porportionally resize the entire SVG back down to 1920px wide from 2400.
+	Inkscape will open a 1920px wide illustrator file at 2400px wide, because it loads it at 90DPI.  This script attempts to porportionally resize the entire SVG back down to 1920px wide from 2400. 1920px wide is the artboard size used by the graphic designers supplying our development department with website designs ready for coding.
 </p>
